@@ -1,7 +1,4 @@
-const Sequelize = require('sequelize');
 const ModelPrototype = require('../../Database/ModelPrototype');
-const sequelize = ModelPrototype.sequelize;
-
 
 /**
  * abstract class
