@@ -17,10 +17,6 @@ PollingOptions.init({
   autoStart: {
     type: Sequelize.INTEGER, defaultValue: 1,
   },
-  timeout: {
-    type: Sequelize.INTEGER,
-    defaultValue: 10,
-  },
 }, {sequelize, modelName: 'polling_options'});
 
 module.exports = new PollingOptions();
