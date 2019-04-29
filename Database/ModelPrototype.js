@@ -16,17 +16,24 @@ class ModelPrototype extends Sequelize.Model {
     }
     let pTableData = this.constructor.findAll();
     if (asArray) {
-      pTableData = pTableData.then((aData)=>{
-        const aResult = [];
-        aData.forEach((oBot)=>{
-          const aBotData = oBot.get();
-          aResult.push(aBotData);
-        });
-        return aResult;
-      });
+      pTableData = pTableData.then(this.convertTableDAtaToArray);
     }
 
     return pTableData;
+  }
+
+  /**
+   * Конветирует полученные из базы данные в массив объектов
+   * @param {array} aTableData
+   * @return {array}
+   */
+  convertTableDAtaToArray(aTableData) {
+    const aDataArray = [];
+    aTableData.forEach((oData)=>{
+      const aData = oData.get();
+      aDataArray.push(aData);
+    });
+    return aDataArray;
   }
 }
 
