@@ -1,0 +1,7 @@
+node_modules
+.eslintrc.json
+.jshintrc
+database.db
+.vscode
+package-lock.json
+package.json
