@@ -1,0 +1,35 @@
+@header_heigth: 20vh;
+@footer_heigth: 10vh;
+@left_width: 300px;
+@full_height: 96vh;
+body {
+  margin: 0;
+
+  .wrap{
+    border: 3px solid;
+    .header {
+      border: 3px solid;
+      width: 100%;
+      height: @header_heigth;
+    }
+    .content {
+      border: 3px solid;
+      width: 100% - @left_width;
+      min-height: @full_height - @header_heigth - @footer_heigth;
+    }
+    .left {
+      height: 100%;
+      width: @left_width;
+      border: 3px solid;
+      min-height: @full_height - @header_heigth - @footer_heigth;
+      float: left;
+    }
+    .footer {
+      border: 3px solid;
+      width: 100%;
+      height: @footer_heigth;
+    }
+  }
+}
+
+
