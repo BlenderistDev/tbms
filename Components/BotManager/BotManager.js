@@ -1,5 +1,6 @@
-const BotTable = require('./model/bots.js');
-const BotConfigurator = require('../BotConfigurator/BotConfigurator');
+const BotTable = require('./model/bots');
+const BotConfigurator = require(ROOT_DIR+
+  '/Components/BotConfigurator/BotConfigurator');
 
 /**
  * Класс используется для того, чтобы собрать список ботов для запуска.
@@ -25,6 +26,14 @@ class BotManager {
         });
 
     return pBots;
+  }
+
+  /**
+   * @return {promise}
+   * Возвращает список ботов
+   */
+  getBotList() {
+    return BotTable.getTable();
   }
 
   /**

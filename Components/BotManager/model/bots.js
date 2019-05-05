@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const ModelPrototype = require('../../Database/ModelPrototype');
+const ModelPrototype = require(ROOT_DIR+'/Components/Database/ModelPrototype');
 
 const sequelize = ModelPrototype.sequelize;
 

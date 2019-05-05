@@ -1,4 +1,4 @@
-const ModelPrototype = require('../../Database/ModelPrototype');
+const ModelPrototype = require(ROOT_DIR+'/Components/Database/ModelPrototype');
 
 /**
  * abstract class

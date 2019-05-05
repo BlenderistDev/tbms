@@ -1,6 +1,6 @@
-const PollingOptions = require('./model/pollingOptions.js');
-const WebhookOptions = require('./model/webhookOptions.js');
-const BotOptions = require('./model/botOptions.js');
+const PollingOptions = require('./model/pollingOptions');
+const WebhookOptions = require('./model/webhookOptions');
+const BotOptions = require('./model/botOptions');
 
 /**
  * Bot configurator
