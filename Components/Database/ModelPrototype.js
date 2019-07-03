@@ -29,7 +29,7 @@ class ModelPrototype extends Sequelize.Model {
    */
   convertTableDAtaToArray(aTableData) {
     const aDataArray = [];
-    aTableData.forEach((oData)=>{
+    aTableData.forEach((oData) => {
       const aData = oData.get();
       aDataArray.push(aData);
     });

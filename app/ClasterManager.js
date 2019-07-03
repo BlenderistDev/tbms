@@ -1,7 +1,7 @@
-const TelegramBot = require(ROOT_DIR+'/Components/BotManager/TelegramBot');
+const path = require('path');
+const TelegramBot = require(path.join(global.ROOT_DIR, 'Components', 'BotManager', 'TelegramBot'));
 const cluster = require('cluster');
-const BotManager = require(ROOT_DIR+'/Components/BotManager/BotManager');
-
+const BotManager = require(path.join(global.ROOT_DIR, 'Components', 'BotManager', 'BotManager'));
 
 /**
  * Класс отвечает за работу с кластером процессов
@@ -19,7 +19,7 @@ class BotClusterManager {
    */
   launchBots() {
     BotManager.getBots()
-        .then((aBots)=>this.startForks(aBots));
+      .then((aBots) => this.startForks(aBots));
   }
 
   /**
@@ -52,14 +52,11 @@ class BotClusterManager {
 const oBotCluster = new BotClusterManager();
 if (cluster.isMaster) {
   oBotCluster.launchBots();
-  require(ROOT_DIR+'/web/init');
+  require(path.join(global.ROOT_DIR, 'web', 'init'));
 } else {
   process.on('message', (msg) => {
     oBotCluster.createTelegramBot(msg);
   });
 }
 
-
 module.exports = BotClusterManager;
-
-

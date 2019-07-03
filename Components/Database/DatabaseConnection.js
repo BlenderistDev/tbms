@@ -14,8 +14,8 @@ class DatabaseConnection {
         storage: './database.db',
         logging: false,
         define: {
-          timestamps: false,
-        },
+          timestamps: false
+        }
       });
     }
     return DatabaseConnection._connection;

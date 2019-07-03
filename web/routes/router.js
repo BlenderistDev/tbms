@@ -4,41 +4,25 @@ const path = require('path');
 const router = express.Router();
 
 /**
- * обработка маршрута
- * /модуль/действие
+ * обработка маршрутов api
  */
-router.get('/:module/:action', function(req, res, next) {
-  const sModuleName = req.params.module;
-  req.params.module = sModuleName[0].toUpperCase()+sModuleName.substr(1);
-
-  const Controller = require(path.join(ROOT_DIR, 'WebModules', req.params.module, 'Module'));
+router.post('/ajax', async function(req, res, next) {
+  const sModuleName = toUpperCaseFirstLetter(req.body.module);
+  const sCmd = 'cmd' + toUpperCaseFirstLetter(req.body.cmd);
+  const Controller = require(path.join(global.ROOT_DIR, 'WebModules', sModuleName, 'Module'));
   const oController = new Controller(req, res);
-  const sActionName = req.params.action;
-  const sAction = 'action'+ sActionName[0].toUpperCase()+sActionName.substr(1);
-  oController[sAction]();
+  const result = await oController[sCmd]();
+  res.send(result);
+  next();
 });
 
 /**
- * обработка маршрута
- * /модуль
+ * Переводит первую букву строки в верхний регистр
+ * @param {string} sStr
+ * @return {string}
  */
-router.get('/:module', function(req, res, next) {
-  const sModuleName = req.params.module;
-  req.params.module = sModuleName[0].toUpperCase()+sModuleName.substr(1);
-
-  const Controller = require(path.join(ROOT_DIR, 'WebModules', req.params.module, 'Module'));
-  const oController = new Controller(req, res);
-  oController.actionIndex();
-});
-
-/**
- * обработка маршрута главной страницы
- */
-router.get('/', function(req, res, next) {
-  req.params.module = 'Index';
-  const Controller = require(path.join(ROOT_DIR, 'WebModules', req.params.module, 'Module'));
-  const oController = new Controller(req, res);
-  oController.actionIndex();
-});
+function toUpperCaseFirstLetter(sStr) {
+  return sStr[0].toUpperCase() + sStr.substr(1);
+}
 
 module.exports = router;

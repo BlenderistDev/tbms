@@ -1,9 +1,8 @@
 // Фикс для библиотеки node-telegram-bot-api
 process.env.NTBA_FIX_319 = true;
+const path = require('path');
 const Telegram = require('node-telegram-bot-api');
-const BotModulesManager = require(ROOT_DIR+
-  '/BotModulesManager/BotModulesManager.js');
-
+const BotModulesManager = require(path.join(global.ROOT_DIR, 'BotModulesManager', 'BotModulesManager'));
 
 /**
  * Класс отвечает за работу с ботом телеграма
@@ -18,13 +17,6 @@ class TelegramBot {
     oBot.startPolling();
     oBot.id = oBotConfig.id;
     oBot = BotModulesManager.addModules(oBot);
-    // oBot.sendMessage('133773580', 'azaza');
-
-    // oBot.on('message', (msg) => {
-    //   const chatId = msg.chat.id;
-    //   oBot.sendMessage(chatId, 'Received your message');
-    //   console.log(msg);
-    // });
   }
 }
 

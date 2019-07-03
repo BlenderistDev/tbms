@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 /**
  * Module dependencies.
  */
@@ -32,17 +30,14 @@ server.on('listening', onListening);
  */
 function normalizePort(val) {
   const port = parseInt(val, 10);
-
   if (isNaN(port)) {
     // named pipe
     return val;
   }
-
   if (port >= 0) {
     // port number
     return port;
   }
-
   return false;
 }
 
@@ -54,7 +49,6 @@ function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
-
   let bind;
   if (typeof port === 'string') {
     bind = 'Pipe ' + port;
@@ -65,13 +59,9 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
+      throw Error(bind + ' requires elevated privileges');
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
+      throw Error(bind + ' is already in use');
     default:
       throw error;
   }

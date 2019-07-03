@@ -12,11 +12,11 @@ class PollingOptions extends OptionsPrototype {
 
 PollingOptions.init({
   bot_id: {
-    type: Sequelize.INTEGER, primaryKey: true,
+    type: Sequelize.INTEGER, primaryKey: true
   },
   autoStart: {
-    type: Sequelize.INTEGER, defaultValue: 1,
-  },
-}, {sequelize, modelName: 'polling_options'});
+    type: Sequelize.INTEGER, defaultValue: 1
+  }
+}, { sequelize, modelName: 'polling_options' });
 
 module.exports = new PollingOptions();

@@ -1,4 +1,5 @@
-const ModelPrototype = require(ROOT_DIR+'/Components/Database/ModelPrototype');
+const path = require('path');
+const ModelPrototype = require(path.join(global.ROOT_DIR, 'Components', 'Database', 'ModelPrototype'));
 
 /**
  * abstract class
@@ -11,18 +12,16 @@ class OptionsPrototype extends ModelPrototype {
      * returns row by id
      */
   getById(iBotId) {
-    const pResult = this.constructor.findCreateFind({where: {bot_id: iBotId},
+    const pResult = this.constructor.findCreateFind({ where: { bot_id: iBotId },
       default: {
-        bot_id: iBotId,
-      }})
-        .then(([oBotOptions, created])=>{
-          return oBotOptions.get();
-        });
+        bot_id: iBotId
+      } })
+      .then(([oBotOptions, created]) => {
+        return oBotOptions.get();
+      });
 
     return pResult;
   }
 }
 
 module.exports = OptionsPrototype;
-
-
