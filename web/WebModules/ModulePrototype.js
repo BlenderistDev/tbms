@@ -30,6 +30,24 @@ class ModulePrototype {
     const oModule = new Module(this.request, this.response);
     return oModule;
   }
+
+  /**
+   * Метод отправляющий сообщение об ощшбке
+   * @param {string} sErrorText
+   * @param {integer} iStatus
+   */
+  sendError(sErrorText, iStatus = 400) {
+    this.response.status(iStatus);
+    return sErrorText;
+  }
+
+  /**
+   * геттер поля data
+   * возвращает поле data post запроса
+   */
+  get data() {
+    return this.request.body.data;
+  }
 }
 
 module.exports = ModulePrototype;

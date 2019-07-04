@@ -6,13 +6,17 @@ const router = express.Router();
 /**
  * обработка маршрутов api
  */
-router.post('/ajax', async function(req, res, next) {
+router.post('/api', async function(req, res, next) {
   const sModuleName = toUpperCaseFirstLetter(req.body.module);
   const sCmd = 'cmd' + toUpperCaseFirstLetter(req.body.cmd);
-  const Controller = require(path.join(global.ROOT_DIR, 'WebModules', sModuleName, 'Module'));
+  const Controller = require(path.join(global.ROOT_DIR, 'web', 'WebModules', sModuleName, 'Module'));
   const oController = new Controller(req, res);
-  const result = await oController[sCmd]();
-  res.send(result);
+  try {
+    res.send(await oController[sCmd]());
+  } catch (Error) {
+    res.status(500);
+    res.send(Error);
+  }
   next();
 });
 

@@ -1,5 +1,5 @@
 const path = require('path');
-const ModulePrototype = require(path.join(global.ROOT_DIR, 'WebModules', 'Main', 'ModulePrototype'));
+const ModulePrototype = require('../ModulePrototype');
 const BotManager = require(path.join(global.ROOT_DIR, 'Components', 'BotManager', 'BotManager'));
 
 /**
@@ -19,7 +19,7 @@ class Module extends ModulePrototype {
    * @return {promise}
    */
   cmdAddBot() {
-    const aBotData = this.request.body.bot;
+    const aBotData = this.data;
     return BotManager.addBot(aBotData);
   }
 
@@ -28,7 +28,7 @@ class Module extends ModulePrototype {
    * @return {promise}
    */
   cmdDeleteBot() {
-    const iBotId = this.request.body.bot_id;
+    const iBotId = this.data.bot_id;
     if (iBotId === undefined) {
       this.response.status(400);
       return 'Undefined bot id';

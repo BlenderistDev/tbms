@@ -1,5 +1,5 @@
 const path = require('path');
-const ModulePrototype = require(path.join(global.ROOT_DIR, 'WebModules', 'Main', 'ModulePrototype'));
+const ModulePrototype = require('../ModulePrototype');
 const SimpleAnswer = require(path.join(global.ROOT_DIR, 'BotModules', 'SimpleAnswer', 'Module'));
 /**
  * фасад для Api
@@ -10,10 +10,9 @@ class Module extends ModulePrototype {
    * возвращает список конфигов модуля для бота
    */
   cmdGetConfig() {
-    const iBotId = this.request.body.bot_id;
+    const iBotId = this.data.bot_id;
     if (iBotId === undefined) {
-      this.response.status(400);
-      return 'Undefined bot id';
+      this.sendError('Undefined bot id');
     }
     return SimpleAnswer.getBotConfig(iBotId);
   }
@@ -22,10 +21,9 @@ class Module extends ModulePrototype {
    * добавляет новый конфиг для модуля
    */
   cmdAddConfig() {
-    const iBotId = this.request.body.bot_id;
+    const iBotId = this.data.bot_id;
     if (iBotId === undefined) {
-      this.response.status(400);
-      return 'Undefined bot id';
+      this.sendError('Undefined bot id');
     }
     return SimpleAnswer.createConfig(iBotId);
   }
@@ -34,10 +32,9 @@ class Module extends ModulePrototype {
    * удаляет конфиг модуля
    */
   cmdDeleteConfig() {
-    const iConfigId = this.request.body.id;
+    const iConfigId = this.data.id;
     if (iConfigId === undefined) {
-      this.response.status(400);
-      return 'Undefined bot id';
+      this.sendError('Undefined bot id');
     }
     return SimpleAnswer.deleteConfig(iConfigId);
   }
@@ -46,10 +43,9 @@ class Module extends ModulePrototype {
    * обновляет шаблон конфига модуля
    */
   cmdUpdateTemplate() {
-    const oConfig = this.request.body.config;
+    const oConfig = this.data.config;
     if (oConfig === undefined) {
-      this.response.status(400);
-      return 'Undefined bot id';
+      this.sendError('Undefined config');
     }
     return SimpleAnswer.updateTemplate(oConfig);
   }
@@ -58,10 +54,9 @@ class Module extends ModulePrototype {
    * обновляет ответ конфига модуля
    */
   cmdUpdateAnswer() {
-    const oConfig = this.request.body.config;
+    const oConfig = this.data.config;
     if (oConfig === undefined) {
-      this.response.status(400);
-      return 'Undefined bot id';
+      this.sendError('Undefined bot config');
     }
     return SimpleAnswer.updateAnswer(oConfig);
   }
