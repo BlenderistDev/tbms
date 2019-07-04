@@ -29,6 +29,25 @@ class Bots extends ModelPrototype {
       return data.dataValues;
     });
   }
+
+  /**
+   * возвращает запись по Primary key
+   * @param {integer} iPk
+   */
+  findByPk(iPk) {
+    return Bots.findByPk(iPk);
+  }
+
+  /**
+   * удаляет бота
+   * @param {integer} iBotId
+   * @return {promise}
+   */
+  deleteBot(iBotId) {
+    return this.findByPk(iBotId).then((oBot) => {
+      return oBot.destroy();
+    });
+  }
 }
 
 Bots.init({

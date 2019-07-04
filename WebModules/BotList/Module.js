@@ -22,6 +22,19 @@ class Module extends ModulePrototype {
     const aData = this.request.body;
     return BotManager.addBot(aData.token);
   }
+
+  /**
+   * удаляет бота
+   * @return {promise}
+   */
+  cmdDeleteBot() {
+    const iBotId = this.request.body.bot_id;
+    if (iBotId === undefined) {
+      this.response.status(400);
+      return 'Undefined bot id';
+    }
+    return BotManager.deleteBot(iBotId);
+  }
 }
 
 module.exports = Module;

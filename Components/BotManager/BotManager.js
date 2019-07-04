@@ -65,9 +65,19 @@ class BotManager {
   /**
    * Добавляет бота
    * @param {string} sToken
+   * @return {promose}
    */
   addBot(sToken) {
-    BotTable.addBot(sToken);
+    return BotTable.addBot(sToken);
+  }
+
+  /**
+   * удаляет бота
+   * @param {integer} iBotId
+   * @return {promise}
+   */
+  deleteBot(iBotId) {
+    return BotTable.deleteBot(iBotId);
   }
 }
 
