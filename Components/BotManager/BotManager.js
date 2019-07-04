@@ -67,8 +67,8 @@ class BotManager {
    * @param {string} sToken
    * @return {promose}
    */
-  addBot(sToken) {
-    return BotTable.addBot(sToken);
+  addBot(oBotData) {
+    return BotTable.addBot(oBotData);
   }
 
   /**

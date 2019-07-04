@@ -19,8 +19,8 @@ class Module extends ModulePrototype {
    * @return {promise}
    */
   cmdAddBot() {
-    const aData = this.request.body;
-    return BotManager.addBot(aData.token);
+    const aBotData = this.request.body.bot;
+    return BotManager.addBot(aBotData);
   }
 
   /**

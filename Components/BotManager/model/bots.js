@@ -23,8 +23,11 @@ class Bots extends ModelPrototype {
    * @param {string} sTokenж
    * @return {promise}
    */
-  addBot(sToken) {
-    return Bots.create({ token: sToken }).then((data) => {
+  addBot(oBotData) {
+    return Bots.create({
+      token: oBotData.token,
+      name: oBotData.name
+    }).then((data) => {
       data.save();
       return data.dataValues;
     });
@@ -52,6 +55,7 @@ class Bots extends ModelPrototype {
 
 Bots.init({
   id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
+  name: Sequelize.STRING,
   token: Sequelize.STRING
 }, { sequelize, modelName: 'bots' });
 
